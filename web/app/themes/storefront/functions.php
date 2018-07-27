@@ -63,40 +63,6 @@ if ( version_compare( get_bloginfo( 'version' ), '4.7.3', '>=' ) && ( is_admin()
 	}
 }
 
-
-//check if https being used regardless of certificate
-function shapeSpace_check_https() { 
-    if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {
-        return true; 
-    }
-    return false;
-}
-
-
-for ($x=0; $x<1; $x++) {
-    //if https:// && www.
-    if ( shapeSpace_check_https() && substr($_SERVER['HTTP_HOST'], 0, 4) === 'www.'){
-			exit;
-            break;
-            // header('HTTP/1.1 301 Moved Permanently');
-            // header('Location: http://' . substr($_SERVER['HTTP_HOST'], 4).$_SERVER['REQUEST_URI']);
-            
-    //if only www.
-    } elseif (substr($_SERVER['HTTP_HOST'], 0, 4) === 'www.') {
-            header('HTTP/1.1 301 Moved Permanently');
-            header('Location: http://' . substr($_SERVER['HTTP_HOST'], 4).$_SERVER['REQUEST_URI']);
-            exit;
-            break;
-    //if only https://
-    } elseif ( shapeSpace_check_https() ) {
-			exit;
-            break;
-            // header('HTTP/1.1 301 Moved Permanently');
-            // header('Location: http://' . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-            // exit;
-            // break;
-    }
-}
 /**
  * Note: Do not add any custom code here. Please use a custom plugin so that your customizations aren't lost during updates.
  * https://github.com/woocommerce/theme-customisations
