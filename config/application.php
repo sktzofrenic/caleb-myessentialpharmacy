@@ -133,8 +133,8 @@ define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 
 // Enforce SSL for Login/Admin in production
 if (env('WP_ENV') != "development") {
-    define('FORCE_SSL_LOGIN', true);
-    define('FORCE_SSL_ADMIN', true);
+    define('FORCE_SSL_LOGIN', false);
+    define('FORCE_SSL_ADMIN', false);
 }
 
 /**
